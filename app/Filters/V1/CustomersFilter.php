@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Services\V1;
+namespace App\Filters\V1;
 
 use Illuminate\Http\Request;
+use App\Filters\ApiFilter;
 
-class CustomerQuery {
+class CustomersFilter extends ApiFilter {
   protected $safeParms = [
     'name' => ['eq'],
     'type' => ['eq'],
@@ -41,7 +42,7 @@ class CustomerQuery {
 
       foreach ($operators as $operator) {
         if (isset($query[$operator])) {
-          $eloQuery[] = [$column, $this->operatorMap($operator), $query[$operator]];
+          $eloQuery[] = [$column, $this->operatorMap[$operator], $query[$operator]];
         }
       }
     }
